@@ -177,13 +177,13 @@ SistemaBiblioteca
 
 Próximas funcionalidades:
 
-[ ] Soporte para xUnit.
-[ ] Soporte para MSTest.
-* Generación de interfaces.
-* Generación de clases abstractas.
-* Arquitecturas multicapa.
-* Plantillas personalizadas.
-* Integración con Git.
+- [ ] Soporte para xUnit.
+- [ ] Soporte para MSTest.
+- [ ] Generación de interfaces.
+- [ ] Generación de clases abstractas.
+- [ ] Arquitecturas multicapa.
+- [ ] Plantillas personalizadas.
+- [ ] Integración con Git.
 
 ---
 
