@@ -1,13 +1,25 @@
 using Spectre.Console;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace UcseCLI;
 
 public static class ProjectGenerator
 {
+    // Solo letras, números y guiones bajos. Debe empezar con letra.
+    private static readonly Regex ValidName = new(@"^[a-zA-Z][a-zA-Z0-9_]*$");
+
     public static void CreateSolution(
         string projectName)
     {
+        if (string.IsNullOrWhiteSpace(projectName) || !ValidName.IsMatch(projectName))
+        {
+            AnsiConsole.MarkupLine(
+                "[red]Nombre inválido. Usá solo letras, números y guiones bajos, empezando con una letra.[/]"
+            );
+            return;
+        }
+
         var root = Path.GetFullPath(
             Path.Combine(
                 Environment.CurrentDirectory,
@@ -26,33 +38,13 @@ public static class ProjectGenerator
 
         Directory.CreateDirectory(root);
 
+        Execute($"new classlib -n {projectName}.LogicaServicio", root);
+        Execute($"new nunit -n {projectName}.LogicaTest", root);
+        Execute($"new sln -n SolucionGeneral", root);
+        Execute($"sln add \"{projectName}.LogicaServicio/{projectName}.LogicaServicio.csproj\"", root);
+        Execute($"sln add \"{projectName}.LogicaTest/{projectName}.LogicaTest.csproj\"", root);
         Execute(
-            $"dotnet new classlib -n {projectName}.LogicaServicio",
-            root
-        );
-
-        Execute(
-            $"dotnet new nunit -n {projectName}.LogicaTest",
-            root
-        );
-
-        Execute(
-            $"dotnet new sln -n SolucionGeneral",
-            root
-        );
-
-        Execute(
-            $"dotnet sln add \"{projectName}.LogicaServicio/{projectName}.LogicaServicio.csproj\"",
-            root
-        );
-
-        Execute(
-            $"dotnet sln add \"{projectName}.LogicaTest/{projectName}.LogicaTest.csproj\"",
-            root
-        );
-
-        Execute(
-            $"dotnet add \"{projectName}.LogicaTest/{projectName}.LogicaTest.csproj\" reference \"{projectName}.LogicaServicio/{projectName}.LogicaServicio.csproj\"",
+            $"add \"{projectName}.LogicaTest/{projectName}.LogicaTest.csproj\" reference \"{projectName}.LogicaServicio/{projectName}.LogicaServicio.csproj\"",
             root
         );
 
@@ -62,15 +54,15 @@ public static class ProjectGenerator
     }
 
     private static void Execute(
-        string command,
+        string arguments,
         string workingDirectory)
     {
         var process = new Process();
 
         process.StartInfo = new ProcessStartInfo
         {
-            FileName = "cmd.exe",
-            Arguments = $"/c {command}",
+            FileName = "dotnet",
+            Arguments = arguments,
             WorkingDirectory = workingDirectory,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -91,11 +83,11 @@ public static class ProjectGenerator
         if (process.ExitCode != 0)
         {
             AnsiConsole.MarkupLine(
-                $"[red]{error}[/]"
+                $"[red]{Markup.Escape(error)}[/]"
             );
 
             throw new Exception(
-                $"Error ejecutando: {command}"
+                $"Error ejecutando: dotnet {arguments}"
             );
         }
     }
