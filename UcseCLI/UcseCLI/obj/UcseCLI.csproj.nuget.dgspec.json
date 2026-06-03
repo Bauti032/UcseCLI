@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI.csproj": {}
+    "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI.csproj": {
+    "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI.csproj": {
       "version": "1.0.1",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI.csproj",
+        "projectUniqueName": "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI.csproj",
         "projectName": "UcseCLI",
-        "projectPath": "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI.csproj",
+        "projectPath": "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI.csproj",
         "packagesPath": "C:\\Users\\Bautista\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\obj\\",
+        "outputPath": "C:\\Users\\Bautista\\Desktop\\UcseCLI\\UcseCLI\\UcseCLI\\UcseCLI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
